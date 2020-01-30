@@ -1,34 +1,50 @@
 import React, { useEffect, useState, Suspense, useRef } from 'react';
 
 interface Props {
-  children?: React.ReactChildren | string;
+  children: React.ReactChildren | string;
+  callback: Function;
 }
 
-const ReactLazy: React.FC<Props> = ({ children }) => {
+const ReactLazy: React.FC<Props> = ({ children, callback }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const elementWrapper = useRef(null);
+  const elementWrapper = useRef<HTMLDivElement>(null);
 
+  const handleIntersection = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver
+  ) => {
+    entries.forEach((entry: IntersectionObserverEntry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        {
+          callback && callback(entry, observer);
+        }
+      }
+    });
+  };
   useEffect(() => {
     if (elementWrapper.current) {
-      console.log('siema');
+      const observer = new IntersectionObserver(handleIntersection);
+      observer.observe(elementWrapper.current);
+      return () => observer.disconnect();
     }
-  }, [elementWrapper]);
+    return () => undefined;
+  }, [elementWrapper, handleIntersection]);
 
   return (
-    <div>
+    <>
       <Suspense fallback={<div>Loading...</div>}>
         <div ref={elementWrapper}>{isVisible && children}</div>
       </Suspense>
-      <button onClick={() => setIsVisible(true)}>show me</button>
-    </div>
+    </>
   );
 };
 
 export default ReactLazy;
 
 // TODO:
-// 1. add intersection observer
-// 2. pass callback when intsersetced
+// 1. add intersection observer --------------
+// 2. pass callback when intsersetced --------------
 // 3. pass config object for observer
 // 4. pass props to the children
 // 5. handle the errors

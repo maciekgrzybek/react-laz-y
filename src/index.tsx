@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, Suspense, useRef } from 'react';
 
-const TestComponent: React.FC = () => {
-  const [val, setVal] = useState(1);
+interface Props {
+  children?: React.ReactChildren | string;
+}
+
+const ReactLazy: React.FC<Props> = ({ children }) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const elementWrapper = useRef(null);
+
+  useEffect(() => {
+    if (elementWrapper.current) {
+      console.log('siema');
+    }
+  }, [elementWrapper]);
+
   return (
     <div>
-      <h1>{val}</h1>
-      <button onClick={() => setVal(val => val + 1)}>Add 1</button>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div ref={elementWrapper}>{isVisible && children}</div>
+      </Suspense>
+      <button onClick={() => setIsVisible(true)}>show me</button>
     </div>
   );
 };
 
-export default TestComponent;
+export default ReactLazy;

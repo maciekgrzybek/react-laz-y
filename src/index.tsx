@@ -81,3 +81,5 @@ export default ReactLazy;
 // 6. create an example page
 // 7. add option for passing own callback as an option -----------
 // 8. pass fallback object as a props
+// 9. Write tests
+// 10. Add checking for SSR - use without suspense and lazy if true

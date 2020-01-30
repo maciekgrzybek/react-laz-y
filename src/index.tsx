@@ -2,10 +2,19 @@ import React, { useEffect, useState, Suspense, useRef } from 'react';
 
 interface Props {
   children: React.ReactChildren | string;
-  callback: Function;
+  callback?: Function;
+  root?: HTMLElement | null;
+  rootMargin?: string;
+  threshold?: number | number[];
 }
 
-const ReactLazy: React.FC<Props> = ({ children, callback }) => {
+const ReactLazy: React.FC<Props> = ({
+  children,
+  callback,
+  root,
+  rootMargin,
+  threshold
+}) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const elementWrapper = useRef<HTMLDivElement>(null);
 
@@ -24,7 +33,11 @@ const ReactLazy: React.FC<Props> = ({ children, callback }) => {
   };
   useEffect(() => {
     if (elementWrapper.current) {
-      const observer = new IntersectionObserver(handleIntersection);
+      const observer = new IntersectionObserver(handleIntersection, {
+        root,
+        rootMargin,
+        threshold
+      });
       observer.observe(elementWrapper.current);
       return () => observer.disconnect();
     }
@@ -40,12 +53,20 @@ const ReactLazy: React.FC<Props> = ({ children, callback }) => {
   );
 };
 
+ReactLazy.defaultProps = {
+  children: undefined,
+  callback: () => undefined,
+  root: null,
+  rootMargin: '0px',
+  threshold: 1
+};
+
 export default ReactLazy;
 
 // TODO:
 // 1. add intersection observer --------------
 // 2. pass callback when intsersetced --------------
-// 3. pass config object for observer
+// 3. pass config object for observer --------------
 // 4. pass props to the children
 // 5. handle the errors
 // 6. create an example page

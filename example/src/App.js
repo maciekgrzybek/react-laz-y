@@ -13,7 +13,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <div style={{ marginTop: '200vh' }}></div>
-        <ReactLazy>siemanop</ReactLazy>
+        <ReactLazy>
+          <div>elo wariat</div>
+        </ReactLazy>
         <a
           className="App-link"
           href="https://reactjs.org"

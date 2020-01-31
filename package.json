@@ -13,14 +13,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.0.2",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^25.1.1",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
+    "jest": "^25.1.0",
     "react-scripts-ts": "^3.1.0",
     "rollup": "^1.30.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^25.1.0",
     "typescript": "^3.7.5"
   },
   "files": [

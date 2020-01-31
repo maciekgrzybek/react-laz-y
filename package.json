@@ -7,7 +7,8 @@
   "jsnext:main": "build/index.es.js",
   "scripts": {
     "build": "rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -31,10 +32,6 @@
   "files": [
     "build"
   ],
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"

@@ -13,10 +13,6 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true
-      // globals: {
-      //   react: 'React',
-      //   'react-dom': 'ReactDOM'
-      // }
     },
     {
       file: pkg.module,

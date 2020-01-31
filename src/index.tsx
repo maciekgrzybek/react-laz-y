@@ -74,7 +74,7 @@ export default ReactLazy;
 
 // TODO:
 // 1. add intersection observer --------------
-// 2. pass callback when intsersetced --------------
+// 2. pass callback when intersected --------------
 // 3. pass config object for observer --------------
 // 4. pass props to the children ---------
 // 5. handle the errors
@@ -82,4 +82,5 @@ export default ReactLazy;
 // 7. add option for passing own callback as an option -----------
 // 8. pass fallback object as a props
 // 9. Write tests
-// 10. Add checking for SSR - use without suspense and lazy if true
+// 10. pass additional styles to the div wrapper
+// 11. Add checking for SSR - use without suspense and lazy if true - next release

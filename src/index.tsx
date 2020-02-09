@@ -95,5 +95,10 @@ export default ReactLazy;
 // 7. add option for passing own callback as an option -----------
 // 8. pass fallback object as a props --------
 // 9. Write tests
+//// a. simple - when right after it's in viewport
+//// b. half of the screen until viewport
+//// c. some percent after it's visible
+//// d. with custom fallback
 // 10. pass additional styles to the div wrapper ---------
 // 11. Add checking for SSR - use without suspense and lazy if true - next release
+// 12. Write readme and simple docs

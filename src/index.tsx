@@ -36,6 +36,8 @@ const ReactLazy: FC<Props> = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const elementWrapper = useRef<HTMLDivElement>(null);
 
+  const defaultWrapperStyles = { minHeight: 1 };
+
   const handleIntersection = (
     entries: IntersectionObserverEntry[],
     observer: IntersectionObserver
@@ -65,7 +67,11 @@ const ReactLazy: FC<Props> = ({
   return (
     <>
       <Suspense fallback={fallback}>
-        <div ref={elementWrapper} className={wrapperClass}>
+        <div
+          ref={elementWrapper}
+          className={wrapperClass}
+          style={defaultWrapperStyles}
+        >
           {isVisible && cloneElement(children, { ...rest })}
         </div>
       </Suspense>

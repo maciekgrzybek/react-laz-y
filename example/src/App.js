@@ -4,6 +4,8 @@ import ReactLazy from 'react-laz-y';
 import logo from './logo.svg';
 import './App.css';
 
+const AntdCard = React.lazy(() => import('./comp'));
+
 function App() {
   return (
     <div className="App" style={{ height: '300vh' }}>
@@ -14,7 +16,9 @@ function App() {
         </p>
         <div style={{ marginTop: '200vh' }}></div>
         <ReactLazy>
-          <div>elo wariat</div>
+          <div>
+            <AntdCard />
+          </div>
         </ReactLazy>
         <a
           className="App-link"

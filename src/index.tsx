@@ -3,19 +3,19 @@ import React, {
   useState,
   Suspense,
   useRef,
-  cloneElement,
   ReactElement,
   FC
 } from 'react';
 
 interface Props {
-  children: ReactElement;
+  children?: ReactElement;
   callback: Function;
   root: HTMLElement | null;
   rootMargin: string;
   threshold: number | number[];
   fallback: ReactElement | string | number;
   wrapperClass: string;
+  styles: object;
 }
 
 const Fallback = () => <div>loading...</div>;
@@ -28,7 +28,7 @@ const ReactLazy: FC<Props> = ({
   threshold,
   fallback,
   wrapperClass,
-  ...rest
+  styles
 }) => {
   if (!children) {
     throw new Error('You need to pass children to the ReactLazy component.');
@@ -63,16 +63,16 @@ const ReactLazy: FC<Props> = ({
     }
     return () => undefined;
   }, [elementWrapper, handleIntersection]);
-
+  console.log(children);
   return (
     <>
       <Suspense fallback={fallback}>
         <div
           ref={elementWrapper}
           className={wrapperClass}
-          style={defaultWrapperStyles}
+          style={{ ...defaultWrapperStyles, ...styles }}
         >
-          {isVisible && cloneElement(children, { ...rest })}
+          {isVisible && children}
         </div>
       </Suspense>
     </>
@@ -86,7 +86,8 @@ ReactLazy.defaultProps = {
   rootMargin: '0px',
   threshold: 1,
   fallback: <Fallback />,
-  wrapperClass: ''
+  wrapperClass: '',
+  styles: {}
 };
 
 export default ReactLazy;

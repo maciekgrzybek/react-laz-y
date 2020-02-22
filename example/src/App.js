@@ -8,28 +8,23 @@ const AntdCard = React.lazy(() => import('./comp'));
 
 function App() {
   return (
-    <div className="App" style={{ height: '300vh' }}>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div style={{ marginTop: '200vh' }}></div>
+    <>
+      <div className="App" style={{ height: 1400 }}>
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+        </header>
+      </div>
+      <div id="lazy-wrapper">
         <ReactLazy>
-          <div>
+          <div id="lazy-yo">
             <AntdCard />
           </div>
         </ReactLazy>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+    </>
   );
 }
 

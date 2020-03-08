@@ -4,9 +4,6 @@
   <a href="https://github.com/maciekgrzybek/react-laz-y">
     <img src="/src/img/react-laz-y-logo.svg" alt="Logo" width="275" height="90">
   </a>
-
-  <h3 align="center">React Laz-y</h3>
-
   <p align="center">
     Lazy load your components when they appear in the viewport.
     <br />

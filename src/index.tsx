@@ -63,7 +63,6 @@ const ReactLazy: FC<Props> = ({
     }
     return () => undefined;
   }, [elementWrapper, handleIntersection]);
-  console.log(children);
   return (
     <>
       <Suspense fallback={fallback}>

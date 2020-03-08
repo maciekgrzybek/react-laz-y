@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, Router, Route } from "@reach/router";
+import { Router } from "@reach/router";
 
-import Basic from "./components/Basic";
+import { Basic, RootMargin } from "./pages";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -15,17 +15,8 @@ function App() {
         </header>
       </div>
       <Router>
-        <Basic path="basic" />
-        {/*<div id="lazy-wrapper">*/}
-        {/*  <ReactLazy>*/}
-        {/*    <div id="lazy-inner-wrapper">*/}
-        {/*      <Card />*/}
-        {/*    </div>*/}
-        {/*  </ReactLazy>*/}
-        {/*</div>*/}
-
-        {/*<Home path="/" />*/}
-        {/*<Dash path="dashboard" />*/}
+        <Basic path="/" />
+        <RootMargin path="/root-margin" />
       </Router>
     </div>
   );

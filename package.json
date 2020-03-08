@@ -7,7 +7,6 @@
   "jsnext:main": "build/index.es.js",
   "scripts": {
     "build": "rollup -c",
-    "test:watch": "jest --watch",
     "cypress:open": "cypress open",
     "example": "cd example && npm run start",
     "test": "start-server-and-test example http://localhost:3000 cypress:open"

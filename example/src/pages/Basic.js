@@ -15,4 +15,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export { Basic };

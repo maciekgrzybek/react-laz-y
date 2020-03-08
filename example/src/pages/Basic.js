@@ -1,7 +1,7 @@
 import React from "react";
 import ReactLazy from "react-laz-y";
 
-const Card = React.lazy(() => import("./MediaCard"));
+const Card = React.lazy(() => import("../components/MediaCard"));
 
 const Basic = () => {
   return (

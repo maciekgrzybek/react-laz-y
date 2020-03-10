@@ -1,20 +1,20 @@
-import React from 'react';
-import ReactLazy from 'react-laz-y';
+import React from "react";
+import ReactLazy from "react-laz-y";
 
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
-const AntdCard = React.lazy(() => import('./comp'));
+const AntdCard = React.lazy(() => import("./comp"));
 
 function App() {
   return (
-    <div className="App" style={{ height: '300vh' }}>
+    <div className="App" style={{ height: "300vh" }}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <div style={{ marginTop: '200vh' }}></div>
+        <div style={{ marginTop: "200vh" }}></div>
         <ReactLazy>
           <div>
             <AntdCard />

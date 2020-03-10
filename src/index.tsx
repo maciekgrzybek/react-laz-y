@@ -9,7 +9,7 @@ import React, {
 
 interface Props {
   children?: ReactElement;
-  callback: Function;
+  onLoad: Function;
   root: HTMLElement | null;
   rootMargin: string;
   threshold: number | number[];
@@ -22,7 +22,7 @@ const Fallback = () => <div>loading...</div>;
 
 const ReactLazy: FC<Props> = ({
   children,
-  callback,
+  onLoad,
   root,
   rootMargin,
   threshold,
@@ -46,7 +46,7 @@ const ReactLazy: FC<Props> = ({
       if (entry.isIntersecting) {
         setIsVisible(true);
         {
-          callback && callback(entry, observer);
+          onLoad && onLoad(entry, observer);
         }
       }
     });
@@ -63,7 +63,7 @@ const ReactLazy: FC<Props> = ({
     }
     return () => undefined;
   }, [elementWrapper, handleIntersection]);
-  console.log(children);
+
   return (
     <>
       <Suspense fallback={fallback}>
@@ -81,7 +81,7 @@ const ReactLazy: FC<Props> = ({
 
 ReactLazy.defaultProps = {
   children: undefined,
-  callback: () => undefined,
+  onLoad: () => undefined,
   root: null,
   rootMargin: '0px',
   threshold: 1,
@@ -94,12 +94,12 @@ export default ReactLazy;
 
 // TODO:
 // 1. add intersection observer --------------
-// 2. pass callback when intersected --------------
+// 2. pass onLoad when intersected --------------
 // 3. pass config object for observer --------------
 // 4. pass props to the children ---------
 // 5. handle the errors --------
 // 6. create an example page
-// 7. add option for passing own callback as an option -----------
+// 7. add option for passing own onLoad as an option -----------
 // 8. pass fallback object as a props --------
 // 9. Write tests
 //// a. simple - when right after it's in viewport

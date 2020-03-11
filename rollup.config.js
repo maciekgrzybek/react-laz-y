@@ -15,15 +15,15 @@ export default {
       sourcemap: true,
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM'
-      }
+        'react-dom': 'ReactDOM',
+      },
     },
     {
       file: pkg.module,
       format: 'es',
       exports: 'named',
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   plugins: [
     external(),
@@ -31,7 +31,7 @@ export default {
     typescript({
       rollupCommonJSResolveHack: true,
       exclude: '**/__tests__/**',
-      clean: true
+      clean: true,
     }),
     commonjs({
       include: ['node_modules/**'],
@@ -40,11 +40,11 @@ export default {
           'Children',
           'Component',
           'PropTypes',
-          'createElement'
+          'createElement',
         ],
-        'node_modules/react-dom/index.js': ['render']
-      }
-    })
+        'node_modules/react-dom/index.js': ['render'],
+      },
+    }),
   ],
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom'],
 };

@@ -4,8 +4,10 @@ import React, {
   Suspense,
   useRef,
   ReactElement,
-  FC
+  FC,
 } from 'react';
+
+import Fallback from './Fallback';
 
 interface Props {
   children?: ReactElement;
@@ -18,8 +20,6 @@ interface Props {
   styles: object;
 }
 
-const Fallback = () => <div>loading...</div>;
-
 const ReactLazy: FC<Props> = ({
   children,
   onLoad,
@@ -28,8 +28,11 @@ const ReactLazy: FC<Props> = ({
   threshold,
   fallback,
   wrapperClass,
-  styles
+  styles,
 }) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
   if (!children) {
     throw new Error('You need to pass children to the ReactLazy component.');
   }
@@ -56,7 +59,7 @@ const ReactLazy: FC<Props> = ({
       const observer = new IntersectionObserver(handleIntersection, {
         root,
         rootMargin,
-        threshold
+        threshold,
       });
       observer.observe(elementWrapper.current);
       return () => observer.disconnect();
@@ -65,17 +68,15 @@ const ReactLazy: FC<Props> = ({
   }, [elementWrapper, handleIntersection]);
 
   return (
-    <>
-      <Suspense fallback={fallback}>
-        <div
-          ref={elementWrapper}
-          className={wrapperClass}
-          style={{ ...defaultWrapperStyles, ...styles }}
-        >
-          {isVisible && children}
-        </div>
-      </Suspense>
-    </>
+    <Suspense fallback={fallback}>
+      <div
+        ref={elementWrapper}
+        className={wrapperClass}
+        style={{ ...defaultWrapperStyles, ...styles }}
+      >
+        {isVisible && children}
+      </div>
+    </Suspense>
   );
 };
 
@@ -87,25 +88,7 @@ ReactLazy.defaultProps = {
   threshold: 1,
   fallback: <Fallback />,
   wrapperClass: '',
-  styles: {}
+  styles: {},
 };
 
 export default ReactLazy;
-
-// TODO:
-// 1. add intersection observer --------------
-// 2. pass onLoad when intersected --------------
-// 3. pass config object for observer --------------
-// 4. pass props to the children ---------
-// 5. handle the errors --------
-// 6. create an example page
-// 7. add option for passing own onLoad as an option -----------
-// 8. pass fallback object as a props --------
-// 9. Write tests
-//// a. simple - when right after it's in viewport
-//// b. half of the screen until viewport
-//// c. some percent after it's visible
-//// d. with custom fallback
-// 10. pass additional styles to the div wrapper ---------
-// 11. Add checking for SSR - use without suspense and lazy if true - next release
-// 12. Write readme and simple docs

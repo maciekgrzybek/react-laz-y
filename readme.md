@@ -57,12 +57,12 @@ npm install npm@latest -g
 
 * Install with npm
 ```sh
-npm i react-laz-y
+npm i react-laz-y-component-loader
 ```
 or
 * Install with yarn
 ```sh
-yarn add react-laz-y
+yarn add react-laz-y-component-loader
 ```
 
 <!-- USAGE EXAMPLES -->
@@ -75,7 +75,7 @@ Pass a component imported with `React.lazy` API as a children.
 
 ```js
 import React from 'react';
-import ReactLazy from 'react-laz-y';
+import ReactLazy from 'react-laz-y-component-loader';
 
 const MyComponent = React.lazy(() => import('./MyComponent'));
 
@@ -105,7 +105,7 @@ Pass the `rootMargin` props to increase or decrease the area of the root boundin
 
 ```js
 import React from 'react';
-import ReactLazy from 'react-laz-y';
+import ReactLazy from 'react-laz-y-component-loader';
 
 const MyComponent = React.lazy(() => import('./MyComponent'));
 

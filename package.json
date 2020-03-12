@@ -1,12 +1,16 @@
 {
-  "name": "react-laz-y",
-  "version": "1.0.0",
+  "name": "react-laz-y-component-loader",
+  "version": "1.0.2",
   "description": "Lazy load your components when they appear in the viewport.",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
   "scripts": {
     "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maciekgrzybek/react-laz-y"
   },
   "keywords": ["react", "lazy", "dynamic", "component", "intersection observer", "viewport"],
   "author": "Maciek Grzybek",
